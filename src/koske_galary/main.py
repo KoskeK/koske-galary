@@ -23,7 +23,7 @@ with app.app_context():
 
 @app.route("/gallery")
 def gallary():
-    galleries = db.session.scalars(db.select(Gallery)).all()
+    galleries = db.session.scalars(db.select(Gallery).where(Gallery.private==False)).all()
     return render_template('gallery.html', galleries=galleries)
 
 @app.route("/gallery/<int:id>")
