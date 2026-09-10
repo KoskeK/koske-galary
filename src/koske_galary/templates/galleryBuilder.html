@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='galleryBuilder.css') }}">
+    <title>Gallery Builder</title>
+</head>
+<body>
+    <h1>New Gallery</h1>
+    <form method="POST" class="newGalleryForm">
+        <input type="text" name="name" placeholder="Gallery Name" required><br><br>
+        <textarea name="description" placeholder="Description"></textarea><br><br>
+        <textarea name="longDescription" placeholder="Long Description"></textarea><br><br>
+        
+        <!-- Use checkbox for single boolean toggles -->
+        <label for="private">Private </label>
+        <input type="checkbox" id="private" name="private"><br><br>
+        
+        <button type="submit">Create Gallery</button>
+    </form>
+
+    <h1>Edit existing galleries</h1>
+    {% for gallery in galleries %}
+        <div class="existingGalleryContainer">
+            <a href="{{ url_for('editGallery', id=gallery.id) }}">
+                <h2>{{ gallery.name }}</h2>
+                {% if gallery.thumbnailFilename %}
+                    <img src="{{ url_for('static', filename='uploads/' ~ gallery.thumbnailFilename) }}" alt="{{ gallery.name }}">
+                {% endif %}
+            </a>
+        </div>
+    {% else %}
+        <p>No existing galleries found.</p>
+    {% endfor %}
+</body>
+</html>

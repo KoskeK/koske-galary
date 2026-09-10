@@ -1,0 +1,14 @@
+h1 {
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.newGalleryForm {
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.existingGalleryContainer {
+    width: 50%;
+    text-align: center;
+}

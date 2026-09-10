@@ -10,14 +10,16 @@
     <div style="text-align: center; font-family: sans-serif;">
         <h1>Koske's Gallery</h1>
     </div>
-    {% for gallery in galleries %}
     <div class="scroll-container">
+        {% for gallery in galleries %}
+        <a href="{ url_for(f"gallery/{gallery.id}") }">
         <div class="desc-container">
             <img src="{{ url_for('static', filename=gallery.thumbnailFilenamel) }}" class="thumbnail">
             <h2>{{ gallery.name }}</h2>
             <p>{{ gallery.description }}</p>
         </div>
+        </a>
+        {%endfor%}
     </div>
-    {%endfor%}
 </body>
 </html>

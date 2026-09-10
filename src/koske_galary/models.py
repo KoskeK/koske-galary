@@ -11,7 +11,8 @@ class Gallery(db.Model):
     name = db.Column(db.String(120), unique=True, nullable=False)
     description = db.Column(db.String(120), unique=True, nullable=False)
     longDescription = db.Column(db.String(10000), unique=True, nullable=False)
-    thumbnailFilename = db.Column(db.String(120), unique=True, nullable=False)
+    thumbnailFilename = db.Column(db.String(120), unique=True, default=None)
+    private = db.Column(db.Boolean())
 
 class Image(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -19,3 +20,5 @@ class Image(db.Model):
     description = db.Column(db.String(1000), unique=True, nullable=False)
     filename = db.Column(db.String(120), unique=True, nullable=False)
     galleryId = db.Column(db.Integer(), db.ForeignKey('gallery.id'), nullable=False)
+    imageOrder = db.Column(db.Integer())
+    
