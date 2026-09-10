@@ -1,4 +1,4 @@
-from koske_galary.main import db
+from koske_galary.database import db
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -6,8 +6,16 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
 
-class Image(db.Model):
+class Gallery(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=True, nullable=False)
     description = db.Column(db.String(120), unique=True, nullable=False)
-    path = db.Column(db.String(120), unique=True, nullable=False)
+    longDescription = db.Column(db.String(10000), unique=True, nullable=False)
+    thumbnailFilename = db.Column(db.String(120), unique=True, nullable=False)
+
+class Image(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120), unique=True, nullable=False)
+    description = db.Column(db.String(1000), unique=True, nullable=False)
+    filename = db.Column(db.String(120), unique=True, nullable=False)
+    galleryId = db.Column(db.Integer(), db.ForeignKey('gallery.id'), nullable=False)

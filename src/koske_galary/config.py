@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 
 class Config():
     def __init__(self):
@@ -8,6 +9,8 @@ class Config():
         except Exception as e:
             print(f"Failed loading the file, {e}")
             quit()
+        BASE_DIR = Path(__file__).resolve().parent
+        self.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{BASE_DIR}/{self.config["SQLALCHEMY_DATABASE_URI"]}"
     
     def update(self, new, key:str) -> bool:
         try:

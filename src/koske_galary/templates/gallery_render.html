@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='gallery.css') }}">
+    <title>Gallery</title>
+</head>
+<body>
+    <div style="text-align: center; font-family: sans-serif;">
+        <h1>Koske's Gallery</h1>
+    </div>
+    <div class="scroll-container">
+        <div class="desc-container">
+            <h2>{{ gallery.name }}</h2>
+            <p>{{ gallery.longDescription }}</p>
+        </div>
+    {% for image in images %}
+        <div class="desc-container">
+            <img src="{{ url_for('static', filename=image.filename) }}" class="thumbnail">
+            <h2>{{ image.name }}</h2>
+            <p>{{ image.description }}</p>
+        </div>
+    {%endfor%}
+    </div>
+    
+</body>
+</html>

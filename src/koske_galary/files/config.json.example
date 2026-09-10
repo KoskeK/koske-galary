@@ -1,6 +1,8 @@
 {
-    "DB_URL":"sqlite://src/koske_galary/files/main.db",
+    "SQLALCHEMY_DATABASE_URIL":"sqlite:///src/koske_galary/files/main.db",
     "PORT":5000,
     "SECRET":"CHANGEME",
-    "SQLALCHEMY_TRACK_MODIFICATIONS": false
+    "SQLALCHEMY_TRACK_MODIFICATIONS": false,
+    "HOST": "0.0.0.0",
+    "DEBUG": false
 }
