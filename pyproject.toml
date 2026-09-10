@@ -1,0 +1,21 @@
+[project]
+name = "koske-galary"
+version = "0.1.0"
+description = "Stuff for my stuff guh"
+readme = "README.md"
+authors = [
+    { name = "KoskeK", email = "koske.kanasugi@truhla.eu" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "flask>=3.1.3",
+    "flask-login>=0.6.3",
+    "flask-sqlalchemy>=3.1.1",
+]
+
+[project.scripts]
+koske-galary = "koske_galary:main"
+
+[build-system]
+requires = ["uv_build>=0.12.3,<0.13.0"]
+build-backend = "uv_build"
