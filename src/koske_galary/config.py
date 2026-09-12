@@ -4,7 +4,7 @@ from pathlib import Path
 class Config():
     def __init__(self):
         try:
-            with open("src/koske_galary/files/config.json") as file:
+            with open("files/config.json") as file:
                 self.config = json.load(file)
         except Exception as e:
             print(f"Failed loading the file, {e}")
