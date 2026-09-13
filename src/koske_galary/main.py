@@ -70,7 +70,7 @@ def editGallery(id):
             file = request.files.get("file")
 
             if file and photoName:
-                file.save(f"src/koske_galary/static/{file.filename}")
+                file.save(f"{app.static_folder}/{file.filename}")
                 relativePath = f"src/koske_galary/static/{file.filename}"
 
                 newImage = Image(
