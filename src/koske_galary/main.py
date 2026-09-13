@@ -115,15 +115,22 @@ def login():
     if request.method == "POST":
         username = request.form.get('username')
         password = request.form.get('password')
-        print(f"Username: {username}")
-        print(f"Password: {password}")
-        if password and username:
-            print(f"Correct: {check_password_hash(db.session.scalar(db.select(User).where(User.username == username)).password, password=password)}")
-            if check_password_hash(db.session.scalar(db.select(User).where(User.username == username)).password, password=password):
-                login_user(db.session.scalar(db.select(User).where(User.username == username)), remember=True)
-                print("Logged in")
+
+        if username and password:
+            # Fetch user safely
+            user = db.session.scalar(db.select(User).where(User.username == username))
+            
+            # Check if user exists BEFORE checking password hash
+            if user and check_password_hash(user.password, password):
+                login_user(user, remember=True)
+                flash("Logged in successfully!", "success")
+                
+                # Redirect to the page they tried to visit, or fallback to 'build'
+                next_page = request.args.get('next')
+                return redirect(next_page or url_for('build'))
             else:
-                print("Wrong password!")
+                flash("Invalid username or password.", "error")
+
     return render_template('login.html')
 
 @app.route("/manage", methods=["GET", "POST"])
@@ -131,16 +138,20 @@ def manage():
     if request.method == "POST":
         username = request.form.get('username')
         password = request.form.get('password')
-        if password and username:
-            if db.session.scalars(db.select(User).where(User.username==username)).first() is not None:
-                db.session.execute(
-                    db.update(User).where(User.username==username).value(password=generate_password_hash(password=password))
-                    )
+
+        if username and password:
+            user = db.session.scalar(db.select(User).where(User.username == username))
+            hashed_pw = generate_password_hash(password)
+
+            if user:
+                user.password = hashed_pw  # Direct object update is cleaner
             else:
-                hash = generate_password_hash(password=password)
-                newUser = User(username=username, password=hash) #pyright: ignore
+                newUser = User(username=username, password=hashed_pw) #pyright: ignore
                 db.session.add(newUser)
-                db.session.commit()
+
+            db.session.commit()
+            flash("User saved successfully!", "success")
+
     return render_template('manage.html')
     
 if __name__ == "__main__":
