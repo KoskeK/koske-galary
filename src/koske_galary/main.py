@@ -112,8 +112,8 @@ def editGallery(id):
 
     return render_template('galleryEditor.html', gallery=gallery, images=images)
 
-@app.route("/login")
-def login(method=["GET", "POST"]):
+@app.route("/login", method=["GET", "POST"])
+def login():
     if request.method == "POST":
         username = request.form.get('username')
         password = request.form.get('password')
@@ -123,8 +123,8 @@ def login(method=["GET", "POST"]):
     return render_template('login.html')
 
 @login_required
-@app.route("/manage")
-def manage(method=["GET", "POST"]):
+@app.route("/manage", method=["GET", "POST"])
+def manage():
     if request.method == "POST":
         username = request.form.get('username')
         password = request.form.get('password')
