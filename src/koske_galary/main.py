@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from koske_galary.config import Config
 from koske_galary.database import db
 from koske_galary.models import User, Gallery, Image
@@ -118,10 +118,12 @@ def login():
         if password and username:
             if check_password_hash(db.session.scalar(db.select(User).where(User.username == username)).password, password=password):
                 login_user(db.session.scalar(db.select(User).where(User.username == username)), remember=True)
+                flash("Logged in!")
+            else:
+                flash("Wrong credentials!")
     return render_template('login.html')
 
 @app.route("/manage", methods=["GET", "POST"])
-@login_required
 def manage():
     if request.method == "POST":
         username = request.form.get('username')
