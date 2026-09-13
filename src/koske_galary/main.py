@@ -4,8 +4,6 @@ from koske_galary.database import db
 from koske_galary.models import User, Gallery, Image
 from flask_login import LoginManager, login_required, login_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from sqlalchemy import update
-
 
 config = Config()
 app = Flask(__name__)
@@ -19,7 +17,7 @@ login_manager.init_app(app)
 
 @login_manager.user_loader
 def load_user(user_id):
-        return db.session.scalar(db.select(User).where(User.id == user_id)).first()
+        return db.session.scalar(db.select(User).where(User.id == user_id))
 
 db.init_app(app)
 with app.app_context():
@@ -36,8 +34,8 @@ def render_gallery(id):
     images = db.session.scalars(db.select(Image).where(Image.galleryId == id)).all()
     return render_template("gallery_render.html", galery=gallery, images=images)
 
-@login_required
 @app.route("/build", methods=["GET", "POST"])
+@login_required
 def build():
     if request.method == "POST":
         name = request.form.get("name")
@@ -59,8 +57,8 @@ def build():
     galleries = db.session.scalars(db.select(Gallery)).all()
     return render_template("galleryBuilder.html", galleries=galleries)
 
-@login_required
 @app.route("/edit/<int:id>", methods=["GET", "POST"])
+@login_required
 def editGallery(id):
     gallery = db.get_or_404(Gallery, id)
     images = db.session.scalars(db.select(Image).where(Image.galleryId == id)).all()
@@ -112,18 +110,18 @@ def editGallery(id):
 
     return render_template('galleryEditor.html', gallery=gallery, images=images)
 
-@app.route("/login", method=["GET", "POST"])
+@app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         username = request.form.get('username')
         password = request.form.get('password')
-        if password:
-            if check_password_hash(db.session.scalar(db.select(User).where(User.username == username)).first().password, password=password):
-                login_user(db.session.scalar(db.select(User).where(User.username == username)).first(), remember=True)
+        if password and username:
+            if check_password_hash(db.session.scalar(db.select(User).where(User.username == username)).password, password=password):
+                login_user(db.session.scalar(db.select(User).where(User.username == username)), remember=True)
     return render_template('login.html')
 
+@app.route("/manage", methods=["GET", "POST"])
 @login_required
-@app.route("/manage", method=["GET", "POST"])
 def manage():
     if request.method == "POST":
         username = request.form.get('username')
@@ -141,4 +139,4 @@ def manage():
     return render_template('manage.html')
     
 if __name__ == "__main__":
-    app.run(Config().config["HOST"], Config().config["PORT"], debug=Config().config["DEBUG"])
+    app.run(config.config["HOST"], config.config["PORT"], debug=config.config["DEBUG"])
