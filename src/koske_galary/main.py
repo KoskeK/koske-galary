@@ -115,12 +115,15 @@ def login():
     if request.method == "POST":
         username = request.form.get('username')
         password = request.form.get('password')
+        print(f"Username: {username}")
+        print(f"Password: {password}")
+        print(f"Correct: {check_password_hash(db.session.scalar(db.select(User).where(User.username == username)).password, password=password)}")
         if password and username:
             if check_password_hash(db.session.scalar(db.select(User).where(User.username == username)).password, password=password):
                 login_user(db.session.scalar(db.select(User).where(User.username == username)), remember=True)
-                flash("Logged in!")
+                print("Logged in")
             else:
-                flash("Wrong credentials!")
+                print("Wrong password!")
     return render_template('login.html')
 
 @app.route("/manage", methods=["GET", "POST"])
