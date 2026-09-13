@@ -122,6 +122,7 @@ def login(method=["GET", "POST"]):
                 login_user(db.session.scalar(db.select(User).where(User.username == username)).first(), remember=True)
     return render_template('login.html')
 
+@login_required
 @app.route("/manage")
 def manage(method=["GET", "POST"]):
     if request.method == "POST":
