@@ -117,8 +117,8 @@ def login():
         password = request.form.get('password')
         print(f"Username: {username}")
         print(f"Password: {password}")
-        print(f"Correct: {check_password_hash(db.session.scalar(db.select(User).where(User.username == username)).password, password=password)}")
         if password and username:
+            print(f"Correct: {check_password_hash(db.session.scalar(db.select(User).where(User.username == username)).password, password=password)}")
             if check_password_hash(db.session.scalar(db.select(User).where(User.username == username)).password, password=password):
                 login_user(db.session.scalar(db.select(User).where(User.username == username)), remember=True)
                 print("Logged in")
