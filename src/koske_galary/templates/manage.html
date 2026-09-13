@@ -7,7 +7,7 @@
     <title>Manage</title>
 </head>
 <body>
-    <form>
+    <form action="{{ url_for('manage') }}" method="POST">
         <input type="text" placeholder="username" name="username">
         <input type="text" placeholder="password" name="password">
         <button type="submit">Save</button>
