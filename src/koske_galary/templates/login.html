@@ -7,9 +7,9 @@
     <title>Login</title>
 </head>
 <body>
-    <form>
-        <input type="text" placeholder="username">
-        <input type="password">
+    <form action="{{ url_for('login') }}" method="POST">
+        <input type="text" name="username" placeholder="username" required>
+        <input type="password" name="password" placeholder="password" required>
         <button type="submit">Submit</button>
     </form>
 </body>
