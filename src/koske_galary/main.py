@@ -134,6 +134,7 @@ def login():
     return render_template('login.html')
 
 @app.route("/manage", methods=["GET", "POST"])
+@login_required
 def manage():
     if request.method == "POST":
         username = request.form.get('username')
