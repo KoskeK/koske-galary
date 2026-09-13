@@ -12,7 +12,7 @@ for key in config.config:
     print(f"Set config {key} to value: {app.config[key]}")
 
 login_manager = LoginManager()
-login_manager.login_view = 'auth.login' #pyright: ignore
+login_manager.login_view = 'login' #pyright: ignore
 login_manager.init_app(app)
 
 @login_manager.user_loader
