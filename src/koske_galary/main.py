@@ -28,6 +28,12 @@ def gallary():
     galleries = db.session.scalars(db.select(Gallery).where(Gallery.private==False)).all()
     return render_template('gallery.html', galleries=galleries)
 
+@app.route("/all")
+@login_required
+def all_galleries():
+    galleries = db.session.scalars(db.select(Gallery)).all()
+    return render_template('gallery.html', galleries=galleries)
+
 @app.route("/gallery/<int:id>")
 def render_gallery(id):
     gallery = db.session.scalars(db.select(Gallery).where(Gallery.id == id)).first()
