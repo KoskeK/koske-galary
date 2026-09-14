@@ -20,11 +20,20 @@ h1, h2, p {
 
 .desc-container {
     text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.desc-container p {
+    white-space: normal;
+    overflow-wrap: break-word;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .desc-container img {
-    width: 100%; 
+    width: 100%;
     height: auto;
-    margin-right: 6.25%;
-    margin-left: 6.25%;   
+    display: block;
+    box-sizing: border-box;
 }
