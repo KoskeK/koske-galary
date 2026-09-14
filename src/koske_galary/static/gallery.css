@@ -1,50 +1,23 @@
-h1, h2, p {
-    font-family: sans-serif;
-}
-
 .scroll-container {
     overflow-x: auto;
     white-space: nowrap;
     padding: 10px;
 }
 
-.scroll-container a {
+.scroll-container div {
     display: inline-block;
-    width: 25%;
-    margin-left: 6.25%;
+    padding: 10px;
+    width: 25%; 
+    height: auto;
     margin-right: 6.25%;
-    vertical-align: top;
+    margin-left: 6.25%;   
+}
 
-    color: inherit;
-    text-decoration: none;
+
+h1, h2, p {
+    font-family: sans-serif;
 }
 
 .desc-container {
-    display: inline-block;
-    width: 25%;
-    margin: 0 6.25%;
-    padding: 10px;
-    box-sizing: border-box;
-
     text-align: center;
-    white-space: normal;
-    vertical-align: top;
-}
-
-.desc-container img {
-    display: block;
-    width: 100%;
-    height: auto;
-}
-
-.desc-container h2,
-.desc-container p {
-    width: 100%;
-    max-width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-
-    white-space: normal;
-    overflow-wrap: anywhere;
-    word-break: break-word;
 }
