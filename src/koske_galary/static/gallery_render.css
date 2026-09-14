@@ -1,3 +1,4 @@
+```css
 body {
     margin: 0;
     padding: 0;
@@ -26,41 +27,62 @@ p {
     display: flex;
     width: 100%;
     box-sizing: border-box;
+
     overflow-x: auto;
     overflow-y: hidden;
+
     gap: 30px;
     padding: 10px 20px;
 }
 
-.desc-container {
+.scroll-container a {
+    color: inherit;
+    text-decoration: none;
+
+    /* Important: prevent the link/card from expanding */
     flex: 0 0 40%;
     min-width: 0;
-    max-width: 100%;
+}
+
+.desc-container {
+    width: 100%;
     box-sizing: border-box;
     text-align: center;
 
-    /* Keep the whole gallery item within the viewport */
-    max-height: calc(100vh - 100px);
+    /* Give the card a real height */
+    height: calc(100vh - 100px);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .desc-container img {
     display: block;
+
+    /* Never exceed the card's width */
     width: auto;
     max-width: 100%;
-    height: auto;
 
-    /* This is the important part */
-    max-height: 70%;
+    /* Never exceed the available vertical space */
+    height: auto;
+    max-height: 70vh;
 
     object-fit: contain;
+
     margin: 0 auto;
+
+    /* Prevent flexbox from making the image larger */
+    flex-shrink: 1;
 }
 
 .desc-container h2 {
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
+
     margin: 10px 0;
+
     white-space: normal;
     overflow-wrap: anywhere;
     word-break: break-word;
@@ -70,7 +92,9 @@ p {
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
+
     margin: 10px 0;
+
     white-space: normal;
     overflow-wrap: anywhere;
     word-break: break-word;
@@ -92,8 +116,4 @@ p {
 .scroll-container::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
-
-.scroll-container a {
-    color: inherit;
-    text-decoration: none;
-}
+```
