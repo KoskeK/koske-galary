@@ -1,32 +1,27 @@
+h1, h2, p {
+    font-family: sans-serif;
+}
+
 .scroll-container {
     overflow-x: auto;
     white-space: nowrap;
     padding: 10px;
 }
 
-.scroll-container div {
+.scroll-container a {
     display: inline-block;
-    padding: 10px;
-    width: 25%; 
-    height: auto;
+    width: 25%;
+    margin-left: 6.25%;
     margin-right: 6.25%;
-    margin-left: 6.25%;   
-}
+    vertical-align: top;
 
-
-h1, h2, p {
-    font-family: sans-serif;
+    color: inherit;
+    text-decoration: none;
 }
 
 .desc-container {
     text-align: center;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.desc-container p {
     white-space: normal;
-    overflow-wrap: break-word;
     width: 100%;
     box-sizing: border-box;
 }
@@ -35,5 +30,11 @@ h1, h2, p {
     width: 100%;
     height: auto;
     display: block;
-    box-sizing: border-box;
+}
+
+.desc-container h2,
+.desc-container p {
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
