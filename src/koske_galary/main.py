@@ -32,7 +32,10 @@ def gallary():
 def render_gallery(id):
     gallery = db.session.scalars(db.select(Gallery).where(Gallery.id == id)).first()
     images = db.session.scalars(db.select(Image).where(Image.galleryId == id)).all()
-    return render_template("gallery_render.html", galery=gallery, images=images)
+    if gallery and images:
+        return render_template("gallery_render.html", galery=gallery, images=images)
+    else:
+        return "Invalid gallery ID"
 
 @app.route("/build", methods=["GET", "POST"])
 @login_required
