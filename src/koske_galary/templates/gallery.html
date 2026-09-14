@@ -12,7 +12,7 @@
     </div>
     <div class="scroll-container">
         {% for gallery in galleries %}
-        <a href="{{ url_for('gallery', id=gallery.id) }}">
+        <a href="{{ url_for('render_gallery', id=gallery.id) }}">
         <div class="desc-container">
             <img src="{{ url_for('static', filename=gallery.thumbnailFilenamel) }}" class="thumbnail">
             <h2>{{ gallery.name }}</h2>
