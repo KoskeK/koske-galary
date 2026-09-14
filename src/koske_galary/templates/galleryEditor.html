@@ -20,7 +20,7 @@
     </form>
     <hr>
     <h2>Photos</h2>
-    <form method="POST" action="{ url_for(f'/edit/{id}') }">
+    <form method="POST" action="{{ url_for(f'/edit/{id}') }}">
         <input type="hidden" name="save_changes" value="1">
         <button type="submit">Save changes</button><br><br>
         {% for image in images %}   
