@@ -40,7 +40,7 @@ p {
     text-align: center;
 
     /* Keep the whole gallery item within the viewport */
-    max-height: 70%;
+    max-height: calc(100vh - 100px);
 }
 
 .desc-container img {
@@ -50,7 +50,7 @@ p {
     height: auto;
 
     /* This is the important part */
-    max-height: calc(100vh - 250px);
+    max-height: 70%;
 
     object-fit: contain;
     margin: 0 auto;
