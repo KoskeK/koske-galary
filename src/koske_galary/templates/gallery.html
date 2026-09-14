@@ -14,7 +14,7 @@
         {% for gallery in galleries %}
         <a href="{{ url_for('render_gallery', id=gallery.id) }}">
         <div class="desc-container">
-            <img src="{{ url_for('static', filename=gallery.thumbnailFilenamel) }}" class="thumbnail">
+            <img src="{{ url_for('static', filename=gallery.thumbnailFilename) }}" class="thumbnail">
             <h2>{{ gallery.name }}</h2>
             <p>{{ gallery.description }}</p>
         </div>
