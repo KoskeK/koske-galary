@@ -71,7 +71,6 @@ def editGallery(id):
 
             if file and photoName:
                 file.save(f"{app.static_folder}/{file.filename}")
-                relativePath = f"src/koske_galary/static/{file.filename}"
 
                 newImage = Image(
                     name=photoName, #pyright: ignore
