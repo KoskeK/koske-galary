@@ -33,7 +33,7 @@ def render_gallery(id):
     gallery = db.session.scalars(db.select(Gallery).where(Gallery.id == id)).first()
     images = db.session.scalars(db.select(Image).where(Image.galleryId == id)).all()
     if gallery and images:
-        return render_template("gallery_render.html", galelry=gallery, images=images)
+        return render_template("gallery_render.html", gallery=gallery, images=images)
     else:
         return "Invalid gallery ID"
 
