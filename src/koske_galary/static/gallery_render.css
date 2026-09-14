@@ -33,7 +33,7 @@ p {
 }
 
 .desc-container {
-    flex: 0 0 25%;
+    flex: 0 0 40%;
     box-sizing: border-box;
     text-align: center;
     white-space: normal;
