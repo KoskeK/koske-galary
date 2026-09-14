@@ -48,12 +48,12 @@ p {
     box-sizing: border-box;
     text-align: center;
 
-    /* Give the card a real height */
     height: 100%;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 .desc-container img {
@@ -73,6 +73,7 @@ p {
 
     /* Prevent flexbox from making the image larger */
     flex-shrink: 1;
+    position: absolute;
 }
 
 .desc-container h2 {
