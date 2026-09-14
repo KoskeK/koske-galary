@@ -20,21 +20,31 @@ h1, h2, p {
 }
 
 .desc-container {
+    display: inline-block;
+    width: 25%;
+    margin: 0 6.25%;
+    padding: 10px;
+    box-sizing: border-box;
+
     text-align: center;
     white-space: normal;
-    width: 100%;
-    box-sizing: border-box;
+    vertical-align: top;
 }
 
 .desc-container img {
+    display: block;
     width: 100%;
     height: auto;
-    display: block;
 }
 
 .desc-container h2,
 .desc-container p {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+
     white-space: normal;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
