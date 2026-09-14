@@ -76,13 +76,13 @@ def editGallery(id):
                 newImage = Image(
                     name=photoName, #pyright: ignore
                     description=photoDescription, #pyright: ignore
-                    filename=relativePath, #pyright: ignore
+                    filename=file.filename, #pyright: ignore
                     galleryId=gallery.id #pyright: ignore
                 )
                 db.session.add(newImage)
                 
                 if not gallery.thumbnailFilename:
-                    gallery.thumbnailFilename = relativePath
+                    gallery.thumbnailFilename = file.filename
 
                 db.session.commit()
                 return redirect(url_for("editGallery", id=id))
